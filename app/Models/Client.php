@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use App\Interface\ImageOwnerInterface;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Zus1\Discriminator\Observers\DiscriminatorObserver;
 use Zus1\Serializer\Attributes\Attributes;
 

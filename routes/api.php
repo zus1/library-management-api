@@ -34,6 +34,34 @@ Route::middleware('custom-auth')->group(function () {
         Route::delete('images/{owner}', \App\Http\Controllers\Image\Delete::class)
             ->name(RouteName::IMAGE_DELETE)
             ->where('owner', '[0-9]+');
+
+        Route::post('/authors', \App\Http\Controllers\Author\Create::class)
+            ->name(RouteName::AUTHOR_CREATE);
+        Route::put('/authors/{author}', \App\Http\Controllers\Author\Update::class)
+            ->name(RouteName::AUTHOR_UPDATE)
+            ->where('author', '[0-9]+');
+        Route::delete('/authors/{author}', \App\Http\Controllers\Author\Delete::class)
+            ->name(RouteName::AUTHOR_DELETE)
+            ->where('author', '[0-9]+');
+        Route::get('/authors', \App\Http\Controllers\Author\RetrieveCollection::class)
+            ->name(RouteName::AUTHORS);
+        Route::get('/authors/{author}', \App\Http\Controllers\Author\Retrieve::class)
+            ->name(RouteName::AUTHOR)
+            ->where('author', '[0-9]+');
+
+        Route::post('/books', \App\Http\Controllers\Book\Create::class)
+            ->name(RouteName::BOOK_CREATE);
+        Route::put('/books/{book}', \App\Http\Controllers\Book\Update::class)
+            ->name(RouteName::BOOK_UPDATE)
+            ->where('book', '[0-9]+');
+        Route::delete('/books/{book}', \App\Http\Controllers\Book\Delete::class)
+            ->name(RouteName::BOOK_DELETE)
+            ->where('book', '[0-9]+');
+        Route::get('/books', \App\Http\Controllers\Book\RetrieveCollection::class)
+            ->name(RouteName::BOOKS);
+        Route::get('/books/{book}',  \App\Http\Controllers\Book\Retrieve::class)
+            ->name(RouteName::BOOK)
+            ->where('book', '[0-9]+');
     });
 });
 

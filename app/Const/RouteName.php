@@ -18,4 +18,16 @@ class RouteName
 
     public const IMAGE_UPLOAD = 'image_upload';
     public const IMAGE_DELETE = 'image_delete';
+
+    public const AUTHORS = 'authors';
+    public const AUTHOR = 'author';
+    public const AUTHOR_CREATE = 'author_create';
+    public const AUTHOR_UPDATE = 'author_update';
+    public const AUTHOR_DELETE = 'author_delete';
+
+    public const BOOKS = 'books';
+    public const BOOK = 'book';
+    public const BOOK_CREATE = 'book_create';
+    public const BOOK_UPDATE= 'book_update';
+    public const BOOK_DELETE = 'book_delete';
 }

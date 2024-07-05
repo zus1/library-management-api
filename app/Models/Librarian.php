@@ -6,7 +6,6 @@ use App\Interface\ImageOwnerInterface;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Notifications\Notifiable;
 use Zus1\Discriminator\Observers\DiscriminatorObserver;
 use Zus1\LaravelAuth\Trait\Token;
