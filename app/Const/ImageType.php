@@ -6,29 +6,21 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class ImageType extends Constant
 {
-    public final const SMALL = 'small';
-    public final const LARGE = 'large';
+    public final const LIBRARIAN = 'librarian';
+    public final const BOOK = 'book';
 
-    public const RATIO = 1;
-
-    public static function dimensions(string $type): array
+    public static function getRatio(string $type): float
     {
         return match ($type) {
-            self::SMALL => [
-                'width' => $width = 200,
-                'height' => self::getHeight($width),
-            ],
-            self::LARGE => [
-                'width' => $width = 600,
-                'height' => self::getHeight($width)
-            ],
-            default => throw new HttpException(500, 'Unknown image type '.$type)
+            self::LIBRARIAN => 1,
+            self::BOOK => 1.5,
+            default => throw new HttpException(500,
+                sprintf('Unknown ratio of type %s. Did you forget to add it to class '.self::class, $type)),
         };
     }
 
-    private static function getHeight(int $with): int
-
+    public static function isValid(?string $type): bool
     {
-        return $with + self::RATIO;
+        return in_array($type, self::getValues());
     }
 }

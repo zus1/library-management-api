@@ -30,4 +30,13 @@ class RouteName
     public const BOOK_CREATE = 'book_create';
     public const BOOK_UPDATE= 'book_update';
     public const BOOK_DELETE = 'book_delete';
+
+    public const RENTAL = 'rental';
+    public const RENTALS = 'rentals';
+    public const RENTAL_CREATE = 'rental_create';
+    public const RENTAL_EXTEND = 'rental_extend';
+    public const RENTAL_TOGGLE_ACTIVE = 'rental_toggle_active';
+
+    public const FINES = 'fines';
+    public const FINE_CHANGE_STATUS = 'fine_change_status';
 }

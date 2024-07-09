@@ -10,6 +10,6 @@ class Retrieve
 {
     public function __invoke(Book $book): JsonResponse
     {
-        return new JsonResponse(Serializer::normalize($book, ['book:retrieve', 'author:nestedBookRetrieve']));
+        return new JsonResponse(Serializer::normalize($book, ['book:retrieve', 'author:nestedBookRetrieve', 'image:nestedBookRetrieve']));
     }
 }

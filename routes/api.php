@@ -30,6 +30,7 @@ Route::middleware('custom-auth')->group(function () {
 
         Route::post('images/{owner?}', \App\Http\Controllers\Image\Upload::class)
             ->name(RouteName::IMAGE_UPLOAD)
+            ->middleware('upload-owner-binding')
             ->where('owner', '[0-9]+');
         Route::delete('images/{owner}', \App\Http\Controllers\Image\Delete::class)
             ->name(RouteName::IMAGE_DELETE)
@@ -62,6 +63,28 @@ Route::middleware('custom-auth')->group(function () {
         Route::get('/books/{book}',  \App\Http\Controllers\Book\Retrieve::class)
             ->name(RouteName::BOOK)
             ->where('book', '[0-9]+');
+
+        Route::post('/rentals/client/{client}/book/{book}', \App\Http\Controllers\Rental\Create::class)
+            ->name(RouteName::RENTAL_CREATE)
+            ->where('client', '[0-9]+')
+            ->where('book', '[0-9]+');
+        Route::put('/rentals/{rental}/extend', \App\Http\Controllers\Rental\Extend::class)
+            ->name(RouteName::RENTAL_EXTEND)
+            ->where('rental', '[0-9]+');
+        Route::put('/rentals/{rental}/toggle-active', \App\Http\Controllers\Rental\ToggleActive::class)
+            ->name(RouteName::RENTAL_TOGGLE_ACTIVE)
+            ->where('rental', '[0-9]+');
+        Route::get('/rentals', \App\Http\Controllers\Rental\RetrieveCollection::class)
+            ->name(RouteName::RENTALS);
+        Route::get('/rentals/{rental}', \App\Http\Controllers\Rental\Retrieve::class)
+            ->name(RouteName::RENTAL)
+            ->where('rental', '[0-9]+');
+
+        Route::put('/fines/{fine}/change-status', \App\Http\Controllers\Fine\ChangeStatus::class)
+            ->name(RouteName::FINE_CHANGE_STATUS)
+            ->where('fine', '[0-9]+');
+        Route::get('/fines', \App\Http\Controllers\Fine\RetrieveCollection::class)
+            ->name(RouteName::FINES);
     });
 });
 

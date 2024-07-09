@@ -70,9 +70,16 @@ return [
             RouteName::BOOK_CREATE => 'pass',
             RouteName::BOOK_UPDATE => 'pass',
             RouteName::BOOK_DELETE => 'pass',
+            RouteName::RENTAL => 'pass',
+            RouteName::RENTALS => 'pass',
+            RouteName::RENTAL_CREATE => 'pass',
+            RouteName::RENTAL_TOGGLE_ACTIVE => 'pass',
+            RouteName::RENTAL_EXTEND => 'pass',
+            RouteName::FINES => 'pass',
+            RouteName::FINE_CHANGE_STATUS => 'pass'
         ],
         'possible_route_parameters' => [
-            'client', 'author', 'book'
+            'client', 'author', 'book', 'rental', 'fine'
         ],
         'additional_subjects' => [
             RouteName::CLIENT_CREATE => \App\Models\Client::class,
@@ -81,6 +88,8 @@ return [
             RouteName::AUTHORS => \App\Models\Author::class,
             RouteName::BOOK_CREATE => \App\Models\Book::class,
             RouteName::BOOKS => \App\Models\Book::class,
+            RouteName::RENTAL_CREATE => \App\Models\Rental::class,
+            RouteName::FINES => \App\Models\Fine::class,
         ],
     ]
 ];

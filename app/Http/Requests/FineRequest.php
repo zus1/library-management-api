@@ -2,14 +2,11 @@
 
 namespace App\Http\Requests;
 
-use App\Const\ImageType;
-use App\Rules\Ratio;
+use App\Const\FineStatus;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\App;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\File;
 
-class UploadRequest extends FormRequest
+class FineRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,13 +24,7 @@ class UploadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => Rule::in(ImageType::getValues()),
-            'image' => [
-                'required',
-                File::types(['image/png', 'image/jpg', 'image/jpeg'])
-                    ->max("2mb"),
-                App::make(Ratio::class),
-            ],
+            'status' => Rule::in(FineStatus::getValues()),
         ];
     }
 }

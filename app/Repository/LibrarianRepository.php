@@ -4,10 +4,13 @@ namespace App\Repository;
 
 use App\Const\Role;
 use App\Models\Librarian;
+use App\Trait\ModelCanBeActive;
 use Illuminate\Support\Facades\Hash;
 
 class LibrarianRepository extends UserRepository
 {
+    use ModelCanBeActive;
+
     protected const MODEL = Librarian::class;
 
     public function register(array $data): Librarian
@@ -22,15 +25,6 @@ class LibrarianRepository extends UserRepository
         $librarian->identifier = random_int(1000, 9999);
 
         $this->setBaseData($librarian, $data);
-
-        $librarian->save();
-
-        return $librarian;
-    }
-
-    public function toggleActive(Librarian $librarian, bool $active): Librarian
-    {
-        $librarian->active = $active;
 
         $librarian->save();
 

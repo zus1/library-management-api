@@ -6,6 +6,7 @@ use App\Interface\ImageOwnerInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Zus1\Serializer\Attributes\Attributes;
 
@@ -23,10 +24,17 @@ use Zus1\Serializer\Attributes\Attributes;
  * @property int $author_id
  */
 #[Attributes([
-    ['id', 'book:nestedAuthorCreate', 'book:nestedAuthorRetrieve', 'book:create', 'book:retrieve', 'book:collection'],
+    ['id',
+        'book:nestedAuthorCreate', 'book:nestedAuthorRetrieve', 'book:create',
+        'book:retrieve', 'book:collection', 'imageOwner:nestedImageUpload',
+        'book:nestedRentalCreate', 'book:nestedRentalRetrieve', 'client:nestedFineCollection',
+        'book:nestedClientRetrieve'
+    ],
     ['title',
         'book:nestedAuthorRetrieve', 'book:create', 'book:nestedAuthorCreate',
-        'book:update', 'book:retrieve', 'book:collection'
+        'book:update', 'book:retrieve', 'book:collection', 'book:nestedRentalCreate',
+        'book:nestedRentalRetrieve', 'rental:collection', 'client:nestedFineCollection',
+        'book:nestedClientRetrieve'
     ],
     ['isbn', 'book:create', 'book:update', 'book:retrieve', 'book:collection'],
     ['genre', 'book:create', 'book:update', 'book:retrieve', 'book:collection'],
@@ -37,6 +45,7 @@ use Zus1\Serializer\Attributes\Attributes;
     ['edition', 'book:create', 'book:update', 'book:retrieve'],
     ['dimensions', 'book:create', 'book:update', 'book:retrieve'],
     ['author', 'book:create', 'book:retrieve', 'book:collection'],
+    ['images', 'book:retrieve'],
 ])]
 class Book extends Model implements ImageOwnerInterface
 {
@@ -62,5 +71,10 @@ class Book extends Model implements ImageOwnerInterface
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'image_owner');
+    }
+
+    public function rentals(): HasMany
+    {
+        return $this->hasMany(Rental::class);
     }
 }
