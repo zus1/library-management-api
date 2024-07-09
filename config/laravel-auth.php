@@ -59,14 +59,37 @@ return [
             RouteName::CLIENT_DELETE => 'pass',
             RouteName::CLIENTS => 'pass',
             RouteName::CLIENT => 'pass',
-            RouteName::IMAGE_UPLOAD => 'pass'
+            RouteName::IMAGE_UPLOAD => 'pass',
+            RouteName::AUTHORS => 'pass',
+            RouteName::AUTHOR => 'pass',
+            RouteName::AUTHOR_CREATE => 'pass',
+            RouteName::AUTHOR_UPDATE => 'pass',
+            RouteName::AUTHOR_DELETE => 'pass',
+            RouteName::BOOK => 'pass',
+            RouteName::BOOKS => 'pass',
+            RouteName::BOOK_CREATE => 'pass',
+            RouteName::BOOK_UPDATE => 'pass',
+            RouteName::BOOK_DELETE => 'pass',
+            RouteName::RENTAL => 'pass',
+            RouteName::RENTALS => 'pass',
+            RouteName::RENTAL_CREATE => 'pass',
+            RouteName::RENTAL_TOGGLE_ACTIVE => 'pass',
+            RouteName::RENTAL_EXTEND => 'pass',
+            RouteName::FINES => 'pass',
+            RouteName::FINE_CHANGE_STATUS => 'pass'
         ],
         'possible_route_parameters' => [
-            'client',
+            'client', 'author', 'book', 'rental', 'fine'
         ],
         'additional_subjects' => [
             RouteName::CLIENT_CREATE => \App\Models\Client::class,
             RouteName::IMAGE_UPLOAD => \App\Models\Image::class,
+            RouteName::AUTHOR_CREATE => \App\Models\Author::class,
+            RouteName::AUTHORS => \App\Models\Author::class,
+            RouteName::BOOK_CREATE => \App\Models\Book::class,
+            RouteName::BOOKS => \App\Models\Book::class,
+            RouteName::RENTAL_CREATE => \App\Models\Rental::class,
+            RouteName::FINES => \App\Models\Fine::class,
         ],
     ]
 ];

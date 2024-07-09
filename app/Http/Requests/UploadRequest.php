@@ -3,9 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Const\ImageType;
-use Closure;
+use App\Rules\Ratio;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\App;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
 
 class UploadRequest extends FormRequest
@@ -26,28 +27,12 @@ class UploadRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'type' => Rule::in(ImageType::getValues()),
             'image' => [
                 'required',
                 File::types(['image/png', 'image/jpg', 'image/jpeg'])
                     ->max("2mb"),
-                function (string $attribute, UploadedFile $value, Closure $fail) {
-                    $dimensions = $value->dimensions();
-
-                    $neededRation = ImageType::RATIO;
-                    $ratio = $dimensions[1]/$dimensions[0];
-
-                    $lowerBoundary = $neededRation - 0.2;
-                    $upperBoundary = $neededRation + 0.2;
-
-                    if($ratio < $lowerBoundary || $ratio > $upperBoundary) {
-                        $fail(sprintf(
-                            'Dimension ratio (height/with) for %s needs to be between %d and %d',
-                            $attribute,
-                            $lowerBoundary,
-                            $upperBoundary
-                        ));
-                    }
-                }
+                App::make(Ratio::class),
             ],
         ];
     }

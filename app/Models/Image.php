@@ -15,8 +15,8 @@ use Zus1\Serializer\Attributes\Attributes;
  */
 #[Attributes([
     ['id', 'image:upload'],
-    ['image', 'image:upload', 'image:nestedLibrarianRetrieve'],
-    ['type', 'image:upload', 'image:nestedLibrarianRetrieve'],
+    ['image', 'image:upload', 'image:nestedLibrarianRetrieve', 'image:nestedBookRetrieve'],
+    ['type', 'image:upload', 'image:nestedLibrarianRetrieve', 'image:nestedBookRetrieve'],
     ['imageOwner', 'image:upload'],
 ])]
 class Image extends Model

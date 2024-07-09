@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use App\Interface\CanBeActiveInterface;
 use App\Interface\ImageOwnerInterface;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Notifications\Notifiable;
 use Zus1\Discriminator\Observers\DiscriminatorObserver;
 use Zus1\LaravelAuth\Trait\Token;
@@ -41,7 +41,7 @@ use Zus1\Serializer\Attributes\Attributes;
     ['images', 'librarian:retrieve']
 ])]
 #[ObservedBy(DiscriminatorObserver::class)]
-class Librarian extends User implements ImageOwnerInterface
+class Librarian extends User implements ImageOwnerInterface, CanBeActiveInterface
 {
     use HasFactory, Notifiable, Token;
 
@@ -97,5 +97,10 @@ class Librarian extends User implements ImageOwnerInterface
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'image_owner');
+    }
+
+    public function setActive(bool $active): void
+    {
+        $this->active = $active;
     }
 }

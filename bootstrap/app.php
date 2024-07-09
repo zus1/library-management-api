@@ -14,7 +14,11 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'custom-auth' => \Zus1\LaravelAuth\Middleware\CustomAuth::class,
-            'custom-authorize' => \Zus1\LaravelAuth\Middleware\CustomAuthorize::class
+            'custom-authorize' => \Zus1\LaravelAuth\Middleware\CustomAuthorize::class,
+            'upload-owner-binding' => \App\Http\Middleware\UploadOwnerMiddleware::class,
+        ]);
+        $middleware->api([
+            \App\Http\Middleware\SnakeCaseMiddleware::class
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

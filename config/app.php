@@ -123,4 +123,12 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'rental' => [
+        'expired_message' => 'Poštovani, vaša posudba je istekla, molim vas vratite posuđene knjige '.
+            'u što kraćem roku da bi izbjegli plaćanje veće zakasnine. Hvala, vaša knjižnica',
+    ],
+    'fine' => [
+        'amount' => (float) env('FINE_AMOUNT', 1.00)
+    ],
+
 ];
