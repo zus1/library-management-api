@@ -15,4 +15,8 @@ return [
         'profile' => env('AWS_SNS_PROFILE', 'default'),
         'region' => env('AWS_SNS_DEFAULT_REGION'),
     ],
+    'os' => [
+        'version' => env('AWS_OPEN_SEARCH_VERSION'),
+        'region' => env('AWS_OPEN_SEARCH_REGION'),
+    ],
 ];

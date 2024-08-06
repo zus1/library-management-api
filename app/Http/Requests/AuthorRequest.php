@@ -36,7 +36,7 @@ class AuthorRequest extends FormRequest
             return $this->createRules();
         }
         if($this->route()->action['as'] === RouteName::AUTHOR_UPDATE) {
-            return $this->sharedRules();
+            return $this->updateRules();
         }
 
         throw new HttpException(422, 'Unprocessable entity');
@@ -46,6 +46,7 @@ class AuthorRequest extends FormRequest
     {
         return [
             ...$this->sharedRules(),
+            'name' => $this->authorRules->nameRules(unique: true),
             'books' => 'required|array',
             'books.*.title' => $this->bookRules->titleRules(),
             'books.*.isbn' => $this->bookRules->isbnRules(),
@@ -59,10 +60,17 @@ class AuthorRequest extends FormRequest
         ];
     }
 
+    private function updateRules()
+    {
+        return [
+            'name' => $this->authorRules->nameRules(unique: false),
+            ...$this->sharedRules(),
+        ];
+    }
+
     private function sharedRules(): array
     {
         return [
-            'name' => $this->authorRules->nameRules(),
             'dob' => $this->authorRules->dobRules(),
             'nationality' => $this->authorRules->nationalityRules(),
         ];

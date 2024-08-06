@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Aws\Credentials\CredentialProvider;
 use Aws\Credentials\Credentials;
+use Aws\OpenSearchService\OpenSearchServiceClient;
 use Aws\S3\S3Client;
 use Aws\Sns\SnsClient;
 use Illuminate\Foundation\Application;

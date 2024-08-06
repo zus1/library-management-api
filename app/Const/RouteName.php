@@ -30,6 +30,8 @@ class RouteName
     public const BOOK_CREATE = 'book_create';
     public const BOOK_UPDATE= 'book_update';
     public const BOOK_DELETE = 'book_delete';
+    public const BOOK_SEARCH = 'book_search';
+    public const BOOK_AUTOCOMPLETE = 'book_autocomplete';
 
     public const RENTAL = 'rental';
     public const RENTALS = 'rentals';

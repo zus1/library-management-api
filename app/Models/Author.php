@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Observers\ElasticSearch\AuthorElasticObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -23,9 +25,14 @@ use Zus1\Serializer\Attributes\Attributes;
     ['nationality', 'author:create', 'author:update', 'author:retrieve', 'author:collection'],
     ['books', 'author:create', 'author:retrieve'],
 ])]
+#[ObservedBy(AuthorElasticObserver::class)]
 class Author extends Model
 {
     use HasFactory;
+
+    public $fillable = [
+        'id', 'name', 'dob', 'nationality'
+    ];
 
     public function books(): HasMany
     {

@@ -76,7 +76,9 @@ return [
             RouteName::RENTAL_TOGGLE_ACTIVE => 'pass',
             RouteName::RENTAL_EXTEND => 'pass',
             RouteName::FINES => 'pass',
-            RouteName::FINE_CHANGE_STATUS => 'pass'
+            RouteName::FINE_CHANGE_STATUS => 'pass',
+            RouteName::BOOK_SEARCH => 'pass',
+            RouteName::BOOK_AUTOCOMPLETE => 'pass',
         ],
         'possible_route_parameters' => [
             'client', 'author', 'book', 'rental', 'fine'
@@ -90,6 +92,8 @@ return [
             RouteName::BOOKS => \App\Models\Book::class,
             RouteName::RENTAL_CREATE => \App\Models\Rental::class,
             RouteName::FINES => \App\Models\Fine::class,
+            RouteName::BOOK_SEARCH => \App\Models\Book::class,
+            RouteName::BOOK_AUTOCOMPLETE => \App\Models\Book::class
         ],
     ]
 ];

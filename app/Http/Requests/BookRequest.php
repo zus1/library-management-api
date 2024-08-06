@@ -38,6 +38,12 @@ class BookRequest extends FormRequest
         if($this->route()->action['as'] === RouteName::BOOK_UPDATE) {
             return $this->shardRules();
         }
+        if($this->route()->action['as'] === RouteName::BOOK_SEARCH) {
+            return $this->searchRules();
+        }
+        if($this->route()->action['as'] === RouteName::BOOK_AUTOCOMPLETE) {
+            return $this->autocompleteRules();
+        }
 
         throw new HttpException(422, 'Unprocessable entity');
     }
@@ -62,6 +68,20 @@ class BookRequest extends FormRequest
         }
 
         return $rules;
+    }
+
+    private function searchRules(): array
+    {
+        return [
+            'query' => 'required|string|max:100',
+        ];
+    }
+
+    private function autocompleteRules(): array
+    {
+        return [
+            'query' => 'required|string|min:3|max:100',
+        ];
     }
 
     private function shardRules(): array

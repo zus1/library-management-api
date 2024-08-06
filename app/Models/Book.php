@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Interface\ImageOwnerInterface;
+use App\Observers\ElasticSearch\BookElasticObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,7 +36,7 @@ use Zus1\Serializer\Attributes\Attributes;
         'book:nestedAuthorRetrieve', 'book:create', 'book:nestedAuthorCreate',
         'book:update', 'book:retrieve', 'book:collection', 'book:nestedRentalCreate',
         'book:nestedRentalRetrieve', 'rental:collection', 'client:nestedFineCollection',
-        'book:nestedClientRetrieve'
+        'book:nestedClientRetrieve', 'book:autoComplete'
     ],
     ['isbn', 'book:create', 'book:update', 'book:retrieve', 'book:collection'],
     ['genre', 'book:create', 'book:update', 'book:retrieve', 'book:collection'],
@@ -47,6 +49,7 @@ use Zus1\Serializer\Attributes\Attributes;
     ['author', 'book:create', 'book:retrieve', 'book:collection'],
     ['images', 'book:retrieve'],
 ])]
+#[ObservedBy(BookElasticObserver::class)]
 class Book extends Model implements ImageOwnerInterface
 {
     use HasFactory;

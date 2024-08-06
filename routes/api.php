@@ -63,6 +63,10 @@ Route::middleware('custom-auth')->group(function () {
         Route::get('/books/{book}',  \App\Http\Controllers\Book\Retrieve::class)
             ->name(RouteName::BOOK)
             ->where('book', '[0-9]+');
+        Route::get('/books/search', \App\Http\Controllers\Book\Search::class)
+            ->name(RouteName::BOOK_SEARCH);
+        Route::get('/books/auto-complete', \App\Http\Controllers\Book\AutocompleteSearch::class)
+            ->name(RouteName::BOOK_AUTOCOMPLETE);
 
         Route::post('/rentals/client/{client}/book/{book}', \App\Http\Controllers\Rental\Create::class)
             ->name(RouteName::RENTAL_CREATE)
@@ -87,6 +91,9 @@ Route::middleware('custom-auth')->group(function () {
             ->name(RouteName::FINES);
     });
 });
+
+Route::get('/cats/images', \App\Http\Controllers\Cat\ImagesCollection::class);
+Route::post('/cats/vote', \App\Http\Controllers\Cat\Vote::class);
 
 Route::prefix('auth')->group(function () {
     Route::post('/register', \App\Http\Controllers\Auth\Register::class)

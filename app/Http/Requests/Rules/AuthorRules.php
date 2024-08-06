@@ -8,14 +8,19 @@ use Illuminate\Validation\Rules\DatabaseRule;
 
 class AuthorRules
 {
-    public function nameRules(): array
+    public function nameRules(bool $unique): array
     {
-        return [
+        $rules = [
             'required',
             'string',
             'max:100',
-            Rule::unique('authors', 'name'),
         ];
+
+        if($unique === true) {
+            $rules[] = Rule::unique('authors', 'name');
+        }
+
+        return $rules;
     }
 
     public function dobRules(): string
